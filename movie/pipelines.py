@@ -8,6 +8,15 @@
 
 
 class MoviePipeline(object):
-    def process_item(self, item, spider):
-        with open("my_meiju.txt",'a') as fp:
-            fp.write(item['name'].encode("utf8") + '\n')
+  def process_item(self, item, spider):
+    with open("my_meiju.txt",'a') as fp:
+      fp.write(item["storyName"].encode("utf8") + "        ")
+      fp.write(item["storyState"].encode("utf8") + "        ")
+      if len(item["tvStation"]) == 0:
+        fp.write("unknow        ")
+      else:
+        fp.write("%s         " %(item["tvStation"][0].encode("utf8")))
+      fp.write("%s         \n" %(item["updateTime"].encode("utf8")))
+    return item
+
+
